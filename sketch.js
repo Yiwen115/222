@@ -19,8 +19,15 @@ function draw() {
 
   // 在 overlayGraphics 上繪製內容
   overlayGraphics.clear(); // 清除之前的內容
+  overlayGraphics.background(0); // 設定背景為黑色
   overlayGraphics.fill(255, 0, 0, 150); // 半透明紅色
-  overlayGraphics.ellipse(overlayGraphics.width / 2, overlayGraphics.height / 2, 100, 100); // 繪製圓形
+
+  // 每隔 80px 繪製一個圓，圓的寬與高為 70
+  for (let i = 0; i < overlayGraphics.width; i += 80) {
+    for (let j = 0; j < overlayGraphics.height; j += 80) {
+      overlayGraphics.ellipse(i + 40, j + 40, 70, 70); // 繪製圓形
+    }
+  }
 
   // 水平翻轉攝影機畫面
   push();
