@@ -20,12 +20,18 @@ function draw() {
   // 在 overlayGraphics 上繪製內容
   overlayGraphics.clear(); // 清除之前的內容
   overlayGraphics.background(0); // 設定背景為黑色
-  overlayGraphics.fill(255, 0, 0, 150); // 半透明紅色
 
-  // 每隔 80px 繪製一個圓，圓的寬與高為 70
-  for (let i = 0; i < overlayGraphics.width; i += 80) {
-    for (let j = 0; j < overlayGraphics.height; j += 80) {
-      overlayGraphics.ellipse(i + 40, j + 40, 70, 70); // 繪製圓形
+  // 每隔 20px 繪製一個圓，圓的寬與高為 15，顏色採用 capture 相對位置的顏色
+  capture.loadPixels(); // 加載攝影機畫面的像素
+  overlayGraphics.noStroke();
+  for (let i = 0; i < overlayGraphics.width; i += 20) {
+    for (let j = 0; j < overlayGraphics.height; j += 20) {
+      let index = (j * capture.width + i) * 4; // 計算像素索引
+      let r = capture.pixels[index]; // 紅色通道
+      let g = capture.pixels[index + 1]; // 綠色通道
+      let b = capture.pixels[index + 2]; // 藍色通道
+      overlayGraphics.fill(r, g, b); // 設定圓的顏色
+      overlayGraphics.ellipse(i + 10, j + 10, 15, 15); // 繪製圓形
     }
   }
 
