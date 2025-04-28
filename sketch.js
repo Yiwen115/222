@@ -18,11 +18,7 @@ function draw() {
   let y = (height - capture.height) / 2; // 計算影像的垂直居中位置
 
   // 繪製攝影機畫面
-  push();
-  translate(x + capture.width, y); // 將畫布原點移動到影像右側
-  scale(-1, 1); // 水平翻轉影像
-  image(capture, 0, 0, capture.width, capture.height); // 繪製攝影機影像
-  pop();
+  image(capture, x, y, capture.width, capture.height); // 直接繪製攝影機影像
 
   // 在 overlayGraphics 上繪製內容
   overlayGraphics.clear(); // 清除之前的內容
