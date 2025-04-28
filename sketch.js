@@ -13,8 +13,11 @@ function draw() {
   let x = (width - capture.width) / 2; // 計算影像的水平居中位置
   let y = (height - capture.height) / 2; // 計算影像的垂直居中位置
 
-  // 繪製攝影機影像，確保不翻轉
-  image(capture, x, y, capture.width, capture.height); // 繪製攝影機影像
+  push(); // 儲存當前繪圖設定
+  translate(x + capture.width, y); // 將畫布原點移動到影像右側
+  scale(-1, 1); // 水平翻轉影像
+  image(capture, 0, 0, capture.width, capture.height); // 繪製攝影機影像
+  pop(); // 恢復繪圖設定
 }
 
 function windowResized() {
