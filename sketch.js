@@ -28,7 +28,11 @@ function draw() {
   for (let i = 0; i < overlayGraphics.width; i += 20) {
     for (let j = 0; j < overlayGraphics.height; j += 20) {
       let col = capture.get(i, j); // 從 capture 中取得對應位置的顏色
-      overlayGraphics.fill(col); // 設定圓形顏色
+      let r = red(col); // 提取紅色分量
+      let g = green(col); // 提取綠色分量
+      let b = blue(col); // 提取藍色分量
+      let gray = (r + g + b) / 3; // 計算灰階值
+      overlayGraphics.fill(gray); // 設定圓形顏色為灰階
       overlayGraphics.noStroke();
       overlayGraphics.ellipse(i + 10, j + 10, 15, 15); // 繪製圓形，居中於單位格
     }
