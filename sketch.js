@@ -17,9 +17,16 @@ function draw() {
   let x = (width - capture.width) / 2; // 計算影像的水平居中位置
   let y = (height - capture.height) / 2; // 計算影像的垂直居中位置
 
+  // 繪製攝影機畫面
+  push();
+  translate(x + capture.width, y); // 將畫布原點移動到影像右側
+  scale(-1, 1); // 水平翻轉影像
+  image(capture, 0, 0, capture.width, capture.height); // 繪製攝影機影像
+  pop();
+
   // 在 overlayGraphics 上繪製內容
   overlayGraphics.clear(); // 清除之前的內容
-  overlayGraphics.background(0); // 設定背景為黑色
+  overlayGraphics.background(0, 150); // 設定背景為半透明黑色
 
   // 繪製網格
   for (let i = 0; i < overlayGraphics.width; i += 20) {
@@ -30,13 +37,6 @@ function draw() {
       overlayGraphics.ellipse(i + 10, j + 10, 15, 15); // 繪製圓形，居中於單位格
     }
   }
-
-  // 水平翻轉攝影機畫面
-  push();
-  translate(x + capture.width, y); // 將畫布原點移動到影像右側
-  scale(-1, 1); // 水平翻轉影像
-  image(capture, 0, 0, capture.width, capture.height); // 繪製攝影機影像
-  pop();
 
   // 繪製 overlayGraphics 到畫布上
   image(overlayGraphics, x, y, capture.width, capture.height);
