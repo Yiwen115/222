@@ -21,17 +21,13 @@ function draw() {
   overlayGraphics.clear(); // 清除之前的內容
   overlayGraphics.background(0); // 設定背景為黑色
 
-  // 每隔 20px 繪製一個圓，圓的寬與高為 15，顏色採用 capture 相對位置的顏色
-  capture.loadPixels(); // 加載攝影機畫面的像素
-  overlayGraphics.noStroke();
+  // 繪製網格
   for (let i = 0; i < overlayGraphics.width; i += 20) {
     for (let j = 0; j < overlayGraphics.height; j += 20) {
-      let index = (j * capture.width + i) * 4; // 計算像素索引
-      let r = capture.pixels[index]; // 紅色通道
-      let g = capture.pixels[index + 1]; // 綠色通道
-      let b = capture.pixels[index + 2]; // 藍色通道
-      overlayGraphics.fill(r, g, b); // 設定圓的顏色
-      overlayGraphics.ellipse(i + 10, j + 10, 15, 15); // 繪製圓形
+      let col = capture.get(i, j); // 從 capture 中取得對應位置的顏色
+      overlayGraphics.fill(col); // 設定圓形顏色
+      overlayGraphics.noStroke();
+      overlayGraphics.ellipse(i + 10, j + 10, 15, 15); // 繪製圓形，居中於單位格
     }
   }
 
