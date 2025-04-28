@@ -29,7 +29,7 @@ function draw() {
     for (let j = 0; j < overlayGraphics.height; j += 20) {
       let col = capture.get(i, j); // 從 capture 中取得對應位置的顏色
       let g = green(col); // 提取綠色分量
-      overlayGraphics.fill(0, g, 100); // 設定方框顏色，R=0, G=綠色分量, B=100
+      overlayGraphics.fill(0, g, 10); // 設定方框顏色，R=0, G=綠色分量, B=10
       overlayGraphics.noStroke();
       overlayGraphics.rect(i + 1, j + 1, 18, 18); // 繪製方框，寬高為 18
 
